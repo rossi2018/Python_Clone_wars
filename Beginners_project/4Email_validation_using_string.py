@@ -36,27 +36,32 @@
 
 print("Program to check Valid email address format")
 
-email=input("Enter your email :  " ) #,rossi@gmail.com
-k,j,d=0,0,0
+email=input("Enter your email :  " ) #valid email rossi@gmail.com or rossi@gmail.co.uk
+
+#Initialize to check this special characters that are not allowed 
+space=0
+upper_character=0
+hash_mark=0
+
 if len(email)>= 6: # r@g.in(wrong character length of email.Must be 6 and above)
     if email[0].isalpha(): # 1rossi@gmail.com
         if ("@" in email) and (email.count("@")==1): #3 rossi@gmail@gmail.com
             if (email[-4]==".") ^ (email[-3]=="."): #4 rossi@gmail.c wrong email
                 for i in email:
-                    if i ==i.isspace(): #5 #rs rossi@gmail.com
-                        k=1
+                    if i ==i.isspace():  #rs rossi@gmail.com  wrong
+                        space=1
                     elif i.isalpha():
-                        if i==i.upper(): #W-- W==W  #5 #Rossi@gmail.com
-                            j=1
+                        if i==i.upper():  #Rossi@gmail.com wrong
+                            upper_character=1
                     elif i.isdigit():
                         continue
                     elif i=="_" or i=="." or i=="@":
                         continue
-                    else:  #5 ws#rossi@gmail.com
-                        d=1 
+                    else:  #ro#rossi@gmail.com  wrong
+                        hash_mark=1 
 
-                if k==1 or j==1 or d==1:
-                    print("Email can't contain  space and Upper Character")
+                if space==1 or upper_character==1 or hash_mark==1:
+                    print("Email cant contain space,upper character or hash mark")
                 else:
                     print("Right email") 
             else:
